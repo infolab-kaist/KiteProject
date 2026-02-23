@@ -33,6 +33,10 @@ The overall workflow follows these key steps:
 3.  **Submit**: Push your code. GitHub Actions will automatically run the grading scripts in the KiteJudge server.
 4.  **Grade and Compete**: Check your scores and rankings on KiteBoard and win awards.
 
+> [!IMPORTANT]
+> Pushing to the `submit` branch does **not** trigger instant grading. The GitHub Action runs on a fixed schedule (e.g., daily), so there may be a delay between your push and when the score appears on KiteBoard. Make sure to submit well before the deadline to allow time for evaluation.
+
+
 ---
 
 ## Platform & Access
@@ -81,7 +85,7 @@ We provide a suite of shell scripts to automate common tasks. run these from the
 
 ### `.github/workflows/` — CI/CD
 *   **`submission.yml`**: Defines the GitHub Actions pipeline.
-*   **Automation**: Every hour, this workflow sends the code from your `submit` branch to the **KiteJudge** server for evaluation.
+*   **Automation**: On a fixed schedule (e.g., once a day), this workflow sends the code from your `submit` branch to the **KiteJudge** server for evaluation.
 
 ---
 
@@ -94,24 +98,22 @@ We believe in healthy competition to drive optimization and excellence.
 *   **How to check**: Run `scripts/test.sh`. (Note: Local tests are indicative; KiteJudge server tests are final).
 *   **Distribution**:
     - KiteSQL: **100 pts**
-    - KiteRAG: **50 pts**
-    - KiteDB: **50 pts**
+    - KiteRAG: **100 pts**
+    - KiteDB: **150 pts**
 
 ### 2. Competition Score
 *   **Definition**: Additional points earned based on the **accuracy** and **efficiency** (speed/memory) of your solution compared to your peers.
 *   **Distribution**:
-    - KiteSQL: **0 pts** (Functional only)
-    - KiteRAG: **50 pts** (Performance matters!)
-    - KiteDB: **50 pts** (Optimization is key!)
+    - KiteSQL: **0 pts** (No competition)
+    - KiteRAG: **150 pts** (Accuracy)
+    - KiteDB: **100 pts** (Efficiency)
 
 ### 3. Final Scoring & Leaderboard
 *   **KiteJudge**: The automated grading server evaluates submissions from the `submit` branch.
 *   **KiteBoard**: A live leaderboard showing current rankings (Accuracy, Efficiency). Names are anonymized to protect privacy.
-*   **Grading Timeline**: Rankings update every hour. Final scores are graded and posted after the deadline.
+*   **Grading Timeline**: Rankings update periodically (e.g., daily). Final scores are graded and posted after the deadline.
 
-<p align="center">
-  <img src="Figures/leaderboard.png" alt="Leaderboard Example" width="80%">
-</p>
+
 
 ### Awards
 Outstanding students who are in top 3 of the leaderboards or demonstrate exceptional engineering quality will be awarded **Bonus Points** at the end of the semester.
