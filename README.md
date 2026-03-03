@@ -30,12 +30,19 @@ The current curriculum consists of three projects:
 The overall workflow follows these key steps:
 1.  **Invitation**: Accept the assignment invitation via GitHub Classroom to get your private repository.
 2.  **Clone and Implement**: Clone your private repository to the Kcloud environment. Implement your code according to the instruction. You can test your code locally using the provided scripts.
-3.  **Submit**: Push your code. GitHub Actions will automatically run the grading scripts in the KiteJudge server.
+3.  **Submit**: Commit your changes to `master`, then run `./scripts/submit.sh` to push your code to the `submit` branch. Submission is automatically triggered when changes are pushed to the `submit` branch.
 4.  **Grade and Compete**: Check your scores and rankings on KiteBoard and win awards.
 
 > [!IMPORTANT]
-> Pushing to the `submit` branch does **not** trigger instant grading. The GitHub Action runs on a fixed schedule (e.g., daily), so there may be a delay between your push and when the score appears on KiteBoard. Make sure to submit well before the deadline to allow time for evaluation.
-
+> To submit your work, first commit all intended changes to the `master` branch, then run `./scripts/submit.sh`. This script force-pushes `master` to the `submit` branch and triggers submission to the judge server. For example:
+> ```bash
+> git config --global user.name "Your Name"
+> git config --global user.email "you@example.com"
+> git add src/
+> git commit -m "Finalize submission"
+> git push origin master
+> ./scripts/submit.sh
+> ```
 
 ---
 
@@ -66,13 +73,13 @@ You must complete the following steps to finish the invitation:
 The project repository is organized to separate documentation, source code, and operational scripts.
 
 ### `docs/` — Documentation
-*   **`instruction.md`**: The primary guide for each project. **Start here.** It lists every task you need to complete.
+*   **`instructions.md`**: The primary guide for each project. **Start here.** It lists every task you need to complete.
 *   **Supplementary Materials**: Additional `*.md` files may be provided to explain complex concepts or API usage.
 
 ### `src/` — Source Code
-*   This is your workspace.
+*   This is your workspace. The entire `src/` folder is submitted for grading.
 *   You will find placeholders marked with `/* task */`.
-*   **Rule**: You can only modify the code file containing that specific task block. Modifications to infrastructure code outside this block will not be reflected in grading.
+*   **Rule**: You may modify any files within the `src/` directory. All changes in this folder will be reflected in grading.
 
 ### `scripts/` — Helper Scripts
 We provide a suite of shell scripts to automate common tasks. run these from the project root (e.g., `./scripts/init.sh`).
@@ -81,11 +88,11 @@ We provide a suite of shell scripts to automate common tasks. run these from the
 *   **`setdb.sh`**: Initializes the database container. It sets up schemas and populates initial data.
 *   **`run.sh`**: Executes the main application. Use this to see your code in action.
 *   **`test.sh`**: Runs local test cases. This gives you an estimated correctness score.
-*   **`submit.sh`**: Validates and pushes your `master` branch code to the `submit` branch for official grading.
+*   **`submit.sh`**: Force-pushes your `master` branch to the `submit` branch, triggering automatic submission to the judge server for official grading.
 
 ### `.github/workflows/` — CI/CD
 *   **`submission.yml`**: Defines the GitHub Actions pipeline.
-*   **Automation**: On a fixed schedule (e.g., once a day), this workflow sends the code from your `submit` branch to the **KiteJudge** server for evaluation.
+*   **Automation**: Submission is automatically triggered when changes are pushed to the `submit` branch. The workflow sends the code to the **KiteJudge** server for evaluation.
 
 ---
 
@@ -99,14 +106,14 @@ We believe in healthy competition to drive optimization and excellence.
 *   **Distribution**:
     - KiteSQL: **100 pts**
     - KiteRAG: **100 pts**
-    - KiteDB: **150 pts**
+    - KiteDB: **100 pts**
 
 ### 2. Competition Score
 *   **Definition**: Additional points earned based on the **accuracy** and **efficiency** (speed/memory) of your solution compared to your peers.
 *   **Distribution**:
     - KiteSQL: **0 pts** (No competition)
     - KiteRAG: **150 pts** (Accuracy)
-    - KiteDB: **100 pts** (Efficiency)
+    - KiteDB: **150 pts** (Efficiency)
 
 ### 3. Final Scoring & Leaderboard
 *   **KiteJudge**: The automated grading server evaluates submissions from the `submit` branch.
@@ -116,7 +123,7 @@ We believe in healthy competition to drive optimization and excellence.
 
 
 ### Awards
-Outstanding students who are in top 3 of the leaderboards or demonstrate exceptional engineering quality will be awarded **Bonus Points** at the end of the semester.
+Outstanding students who are in top of the leaderboards or demonstrate exceptional engineering quality will be awarded **Bonus Points** at the end of the semester.
 
 ---
 
