@@ -34,7 +34,7 @@ The overall workflow follows these key steps:
 4.  **Grade and Compete**: Check your scores and rankings on KiteBoard and win awards.
 
 > [!IMPORTANT]
-> To submit your work, first commit all intended changes to the `master` branch, then run `./scripts/submit.sh`. This script force-pushes `master` to the `submit` branch and triggers submission to the judge server. For example:
+> To submit your work, first commit all intended changes to the `master` branch, then run `./scripts/submit.sh`. This script runs `git push origin master:submit --force`, which force-pushes your local `master` branch to the remote `submit` branch, triggering submission to the judge server. For example:
 > ```bash
 > git config --global user.name "Your Name"
 > git config --global user.email "you@example.com"
@@ -88,7 +88,7 @@ We provide a suite of shell scripts to automate common tasks. run these from the
 *   **`setdb.sh`**: Initializes the database container. It sets up schemas and populates initial data.
 *   **`run.sh`**: Executes the main application. Use this to see your code in action.
 *   **`test.sh`**: Runs local test cases. This gives you an estimated correctness score.
-*   **`submit.sh`**: Force-pushes your `master` branch to the `submit` branch, triggering automatic submission to the judge server for official grading.
+*   **`submit.sh`**: Runs `git push origin master:submit --force`, which force-pushes your local `master` branch to the remote `submit` branch, triggering automatic submission to the judge server for official grading.
 
 ### `.github/workflows/` — CI/CD
 *   **`submission.yml`**: Defines the GitHub Actions pipeline.
@@ -117,9 +117,7 @@ We believe in healthy competition to drive optimization and excellence.
 
 ### 3. Final Scoring & Leaderboard
 *   **KiteJudge**: The automated grading server evaluates submissions from the `submit` branch.
-*   **KiteBoard**: A live leaderboard showing current rankings (Accuracy, Efficiency). Names are anonymized to protect privacy.
-*   **Grading Timeline**: Rankings update periodically (e.g., daily). Final scores are graded and posted after the deadline.
-
+*   **KiteBoard**: A live leaderboard showing current rankings (Accuracy, Efficiency). Your **best score** among all submissions made before the deadline is displayed on the leaderboard. Names are anonymized to protect privacy.
 
 
 ### Awards
