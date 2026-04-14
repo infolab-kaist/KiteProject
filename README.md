@@ -63,8 +63,18 @@ You must complete the following steps to finish the invitation:
 3. Enter your personal repository
 
 <p align="center">
-  <img src="Figures/platform.png" alt="Platform Example">
+  <img src="Figures/platform.png" alt="Platform Example" width="90%">
 </p>
+
+To clone your repository, you need to register a ssh key to your github account.
+1. Issue and copy your public key
+2. Register the public key to your github account
+3. Clone your repository using ssh
+
+<p align="center">
+  <img src="Figures/github-access.png" alt="Github Access Example">
+</p>
+
 
 ---
 
