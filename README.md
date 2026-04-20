@@ -29,7 +29,7 @@ The current curriculum consists of three projects:
 
 The overall workflow follows these key steps:
 1.  **Invitation**: Accept the assignment invitation via GitHub Classroom to get your private repository.
-2.  **Clone and Implement**: Clone your private repository to the Kcloud environment. Implement your code according to the instruction. You can test your code locally using the provided scripts.
+2.  **Clone and Implement**: Clone your private repository to the Kcloud or Local (e.g., Multipass, WSL) environment. Implement your code according to the instruction. You can test your code locally using the provided scripts.
 3.  **Submit**: Commit your changes to `master`, then run `./scripts/submit.sh` to push your code to the `submit` branch. Submission is automatically triggered when changes are pushed to the `submit` branch.
 4.  **Grade and Compete**: Check your scores and rankings on KiteBoard and win awards.
 
